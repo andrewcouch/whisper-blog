@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Crafting Sim{% endblock %}</title>
+
+  {% block head %}
+  <link rel="stylesheet" href="/resource/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/resource/css/whisper-blog.css">  
+  {% endblock %}
+</head>
+<body {% block app %}{% endblock %}>
+  {% block content %}{% endblock %}
+</body>
+</html>

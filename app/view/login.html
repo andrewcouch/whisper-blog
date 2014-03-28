@@ -1,0 +1,42 @@
+{% extends 'angular.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="center-block centered">
+			<form method="post" id="login-form" ng-controller="LoginCtrl" ng-submit="submit();">
+				<p>Please log into your account</p>
+				{% raw %}
+				<p class="error" ng-hide="message==''">{{message}}</p>
+				{% endraw %}
+				<div class="form-group">
+					<input type="text" name="email" ng-model="user.email" placeholder="E-Mail"/>
+				</div>
+				<div class="form-group">
+					<input type="password" name="password" ng-model="user.password" placeholder="Password"/>
+				</div>
+				<input type="submit" value="Login"/>
+			</form>
+		</div>
+	</div>
+	<div class="row">
+		<div class="center-block centered">
+			<form method="post" id="create-account" ng-controller="RegisterCtrl" ng-submit="submit();" >
+				<p>Create an account</p>
+				{% raw %}
+				<p class="error" ng-hide="message==''">{{message}}</p>
+				{% endraw %}				
+				<div class="form-group">				
+				<input type="text" name="email" ng-model="user.email" placeholder="E-Mail"/>
+				</div>
+				<div class="form-group">		
+				<input type="password" name="password" ng-model="user.password" placeholder="Password"/>
+				</div>		
+				<input type="submit" value="Create Account"/>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
