@@ -25,35 +25,14 @@
 
 body{
 	padding:0;
-	margin:30px 0 0 0;
+	margin:50px 0 0 0;
 	font-size:16px;
 	line-height:19px;
-	font-family: 'Raleway', sans-serif;
 	color:#222;	
-	&.wide{
-		background:@hiblue;
-	}
+	background:@hiblue;
+
 }
-h1,h2,h3,h4{
-	font-family: 'Josefin Sans', sans-serif;
-	margin: 0.25em 0 0.5em;
-	padding:0;
-	font-weight:700;
-	color:#222;
-	text-align: center;
-}
-h2{
-	border-color: @hiblue;
-	border-bottom-style: solid;
-	border-bottom-width:2px;
-	padding-bottom:5px;
-}
-h1{
-	border-color: @hiblue;
-	border-bottom-style: solid;
-	border-bottom-width:4px;
-	padding-bottom:5px;
-} 
+
 .login-box, .newpost{
 	max-width:500px;
 	padding:0;
@@ -83,7 +62,7 @@ h1{
 		.full-rounded(5px);
 		margin:5px 0;
 		border:1px solid @lightgray;
-		background-color:@lightblue;
+		background-color:white;
 		padding:5px;
 		.title{
 			font-weight:bold;
@@ -91,9 +70,12 @@ h1{
 		}
 		.body{
 			display:block;
+			margin:2px 5px 2px 20px;
 		}
 		.posttime{
 			display:block;
+			font-size:75%;
+			text-align:right;
 		}
 	}
 }

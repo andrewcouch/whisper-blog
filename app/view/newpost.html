@@ -1,12 +1,12 @@
 <div class="newpost small-centered columns ">
-	<form method="post" id="post-form" ng-controller="NewPostCtrl" ng-submit="submit();">
+	<form method="post" id="post-form" ng-controller="NewPostCtrl" ng-submit="submit();" ng-show="show_post">
 		<fieldset>
 			<legend>Post something</legend>
 			{% raw %}
 			<p class="error" ng-hide="message==''">{{message}}</p>
 			{% endraw %}
 			<input type="text" name="title" ng-model="post.title" placeholder="Title" maxlength="45"/>
-			<input type="text" name="body" ng-model="post.body" placeholder="Body"/>
+			<textarea  type="text" name="body" ng-model="post.body" placeholder="Body" rows="4"></textarea>
 			<div class="row collapse">
 				<div class="small-3 large-2 columns">
 					<span class="prefix">http://</span>

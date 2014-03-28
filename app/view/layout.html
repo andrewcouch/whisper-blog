@@ -11,6 +11,7 @@
   {% endblock %}
 </head>
 <body {% block app %}{% endblock %}>
+  {% include 'nav.html' with user only %}
   {% block content %}{% endblock %}
 </body>
 </html>

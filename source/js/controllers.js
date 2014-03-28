@@ -1,6 +1,6 @@
-var crafterApp = angular.module('crafterApp',['ngRoute']);
+var whisperApp = angular.module('whisperApp',['ngRoute']);
 
-crafterApp.controller('LoginCtrl', ['$scope','$http','$window',function ($scope, $http, $window) {
+whisperApp.controller('LoginCtrl', ['$scope','$http','$window',function ($scope, $http, $window) {
   $scope.user = {};
   $scope.message = '';
   $scope.submit = function () {
@@ -23,7 +23,7 @@ crafterApp.controller('LoginCtrl', ['$scope','$http','$window',function ($scope,
   };
 }]);
 
-crafterApp.controller('RegisterCtrl', ['$scope','$http','$window',function ($scope, $http, $window) {
+whisperApp.controller('RegisterCtrl', ['$scope','$http','$window',function ($scope, $http, $window) {
   $scope.user = {};
   $scope.message = '';
   $scope.submit = function () {
@@ -46,7 +46,11 @@ crafterApp.controller('RegisterCtrl', ['$scope','$http','$window',function ($sco
   };
 }]);
 
-crafterApp.controller('NewPostCtrl', ['$scope','$http','$window',function ($scope, $http, $window) {
+whisperApp.controller('BaseCtrl',['$scope',function($scope){
+  $scope.show_post = false;
+}]);
+
+whisperApp.controller('NewPostCtrl', ['$scope','$http','$window',function ($scope, $http, $window) {
   $scope.post = {};
   $scope.message = '';
 
@@ -64,7 +68,7 @@ crafterApp.controller('NewPostCtrl', ['$scope','$http','$window',function ($scop
   };
 }]);
 
-crafterApp.factory('authInterceptor', function ($rootScope, $q, $window) {
+whisperApp.factory('authInterceptor', function ($rootScope, $q, $window) {
   return {
     request: function (config) {
       config.headers = config.headers || {};
@@ -82,6 +86,6 @@ crafterApp.factory('authInterceptor', function ($rootScope, $q, $window) {
   };
 });
 
-crafterApp.config(function ($httpProvider) {
+whisperApp.config(function ($httpProvider) {
   $httpProvider.interceptors.push('authInterceptor');
 });
