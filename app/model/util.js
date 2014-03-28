@@ -49,26 +49,27 @@ exports.check_single_update_occured = function(result){
 }
 
 //Returns promise for a cleaned post.
-exports.build_post = function(input){
+exports.build_post = function(input, user){
 	var promise = q.defer();
 	var post = {};
 	
 	post.title = input.title;
 	post.url = input.url;
 	post.body = input.body;
-	post.author_id = input.author_id;
+	post.author_id = user.id;
 	post.posttime = new Date();
+	post.tags = input.tags;
 
 	promise.resolve(post);
 
 	return promise.promise;
 }
 
-//{max:10,since:10,seen:10,orderby:"posttime",orderdir:"desc", author_id}
+//{max:10,since:#,seen:#,orderby:"posttime",orderdir:"desc", author_id:#}
 exports.build_postsearch_sql = function(search){
 	var promise = q.defer();
 
-	var sql = "select id,title,body,author_id,url,posttime from post",
+	var sql = "select id,title,body,author_id,url,posttime,tags from post",
 		max = parseInt(search.max) || 10,
 		orderby = search.orderby || "posttime",
 		orderdir = search.orderdir=="asc"?"asc":"desc",
@@ -82,10 +83,10 @@ exports.build_postsearch_sql = function(search){
 	{
 		where.push("author_id = " + search.author_id);
 	}
-	if (_.isNumber(search.since) && !_.isNaN(search.since)){
+	if (_.isNumber(search.since) && !_.isNaN(search.since) && search.seen > 0){
 		where.push("id > " + search.since);
 	}
-	if (_.isNumber(search.seen) && !_.isNaN(search.seen)){
+	if (_.isNumber(search.seen) && !_.isNaN(search.seen) && search.seen > 0){
 		where.push("id < " + search.seen);
 	}
 	if (where.length > 0)

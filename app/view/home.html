@@ -1,0 +1,14 @@
+{% extends 'angular.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+
+	{% for post in posts %}
+	  {% if loop.first %}<div class="posts">{% endif %}
+	  <div class="post"><a href="/post/{{post.id}}/">{{post.title}}</a>
+	  <span>{{post.body}}</span>
+	  </div>
+	  {% if loop.last %}</div>{% endif %}
+	{% endfor %}
+{% endblock %}

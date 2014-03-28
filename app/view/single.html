@@ -1,0 +1,15 @@
+{% extends 'angular.html' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+Single Post
+	  <div class="post"><a href="/post/{{post.id}}/">{{post.title}}</a>
+	  <span>{{post.body}}</span>
+	  {% if post.tags %}
+	  <span>{{post.tags}}</span>
+	  {% endif %}
+	  <span>{{post.posttime |date('d M Y H:i:s')}}</span>
+	  </div>
+
+{% endblock %}
