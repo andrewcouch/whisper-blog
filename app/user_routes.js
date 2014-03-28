@@ -47,7 +47,7 @@ exports.api_user_view_self = function(req,res){
 		});
 };
 
-exports.user_view = function(req, res){
+exports.render_user_view = function(req, res){
 	user.load_account(req.user)
 	.done(function(result){
 			res.render('account', result);
