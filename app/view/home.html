@@ -4,11 +4,17 @@
 
 {% block content %}
 
+{% include "./newpost.html" %}
+
+<div class="row">
 	{% for post in posts %}
-	  {% if loop.first %}<div class="posts">{% endif %}
-	  <div class="post"><a href="/post/{{post.id}}/">{{post.title}}</a>
-	  <span>{{post.body}}</span>
+	  {% if loop.first %}<div class="posts small-centered columns">{% endif %}
+	  <div class="post">
+	  	<a href="/post/{{post.id}}/" class="title">{{post.title}}</a>
+	  <span class="body">{{post.body}}</span>
+	  <span class="posttime">{{post.posttime |date('d M Y H:i:s')}}</span>
 	  </div>
 	  {% if loop.last %}</div>{% endif %}
 	{% endfor %}
+</div>	
 {% endblock %}

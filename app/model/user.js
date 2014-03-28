@@ -20,6 +20,7 @@ exports.create_account = function(input){
 			.spread(function(result){
 				var promise = q.defer();
 				if (result.affectedRows==1){
+					user.id = result.insertId;
 					promise.resolve();
 				}else{
 					promise.reject("Affected Rows:" + result.affectedRows);
@@ -82,12 +83,13 @@ exports.login = function(input){
 	.then(function(cleaned_user){user = cleaned_user;})
 	.then(pool)
 	.then(function(conn){
-		return q.ninvoke(conn,"query","select password from account where email=?",	user.email)
+		return q.ninvoke(conn,"query","select id, password from account where email=?",	user.email)
 			.spread(function(rows){
 				var promise = q.defer();
 				if (rows.length==0){
 					promise.reject("No user found.")
 				}else{
+					user.id = rows[0].id;
 					promise.resolve(rows[0].password);
 				}
 				return promise.promise;

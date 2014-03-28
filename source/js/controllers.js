@@ -14,7 +14,7 @@ crafterApp.controller('LoginCtrl', ['$scope','$http','$window',function ($scope,
         }
         $window.sessionStorage.token = data.token;
         $scope.message = 'Welcome';
-        $window.location.href = '/account';
+        $window.location.href = '/home';
       })
       .error(function (data, status, headers, config) {
         delete $window.sessionStorage.token;
@@ -37,7 +37,7 @@ crafterApp.controller('RegisterCtrl', ['$scope','$http','$window',function ($sco
         }
         $window.sessionStorage.token = data.token;
         $scope.message = 'Welcome';
-        $window.location.href = '/account';
+        $window.location.href = '/home';
       })
       .error(function (data, status, headers, config) {
         delete $window.sessionStorage.token;
@@ -45,26 +45,25 @@ crafterApp.controller('RegisterCtrl', ['$scope','$http','$window',function ($sco
       });
   };
 }]);
-crafterApp.controller('UpdateCtrl', ['$scope','$http','$window',function ($scope, $http, $window) {
-  $scope.user = {};
+
+crafterApp.controller('NewPostCtrl', ['$scope','$http','$window',function ($scope, $http, $window) {
+  $scope.post = {};
   $scope.message = '';
 
-  $http.get('/api/viewaccount').success(function(data) {
-      $scope.user = data;
-    });
 
   $scope.submit = function () {
     $http
-      .post('/api/updateaccount', $scope.user)
+      .post('/api/post/create', $scope.post)
       .success(function (data, status, headers, config) {
-        $scope.user = data;
-        $scope.message = 'Updated';
+        $scope.post = {};
+        $scope.message = 'Posted';
       })
       .error(function (data, status, headers, config) {
-        $scope.message = 'Error: Invalid user or password';
+        $scope.message = 'Error.';
       });
   };
 }]);
+
 crafterApp.factory('authInterceptor', function ($rootScope, $q, $window) {
   return {
     request: function (config) {

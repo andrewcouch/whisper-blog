@@ -2,6 +2,8 @@ var post = require('./model/post');
 
 exports.api_post_create = function(req,res){
 
+	console.log(req.body);
+	console.log(req.user);
 	post.create(req.body, req.user)
 	.done(function(id){
 			res.json({success:id});

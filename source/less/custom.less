@@ -12,9 +12,16 @@
   border-bottom-right-radius: @radius;
   border-bottom-left-radius: @radius;   
 }
+.top-rounded(@radius) {
+  border-top-right-radius: @radius;
+  border-top-left-radius: @radius;  
+}
 @higreen: #83C97E;
 @hiblue: #7b8caa;
 @error: #dd2234;
+
+@lightblue: #ddddff;
+@lightgray:#ccc;
 
 body{
 	padding:0;
@@ -47,20 +54,20 @@ h1{
 	border-bottom-width:4px;
 	padding-bottom:5px;
 } 
-.form-group{
-	label{
-		width:120px;
+.login-box, .newpost{
+	max-width:500px;
+	padding:0;
+	fieldset{
+		.full-rounded(5px);
+		border:1px solid @lightgray;
+		background:@lightblue;
+		padding:10px;
+		legend{
+			border:1px solid @lightgray;
+			padding:5px;
+			.top-rounded(3px);
+		}
 	}
-	input[type='text'],input[type='password']{
-		width:100%;
-	}
-}
-.centered{
-	width:325px;
-	.full-rounded(5px);
-	border:1px solid #ccc;
-	background:#ddf;
-	padding:10px;
 }
 .error {
 	background: @error;
@@ -68,4 +75,25 @@ h1{
 	padding:10px;
 	.full-rounded(10px);
 	text-align:center;
+}
+.posts, .single-post{
+	padding:10px 0;
+	max-width:500px;	
+	.post{
+		.full-rounded(5px);
+		margin:5px 0;
+		border:1px solid @lightgray;
+		background-color:@lightblue;
+		padding:5px;
+		.title{
+			font-weight:bold;
+			display:block;
+		}
+		.body{
+			display:block;
+		}
+		.posttime{
+			display:block;
+		}
+	}
 }

@@ -17,7 +17,7 @@ module.exports = function(grunt) {
         banner: '<%= banner %>',
         stripBanners: false
       },
-      bootstrap: {
+     bootstrap: {
         src: [
           'source/bootstrap/js/transition.js',
           'source/bootstrap/js/alert.js',
@@ -52,7 +52,7 @@ module.exports = function(grunt) {
         compile: true,
         banner: '<%= banner %>'
       },
-      bootstrap: {
+     /* bootstrap: {
         src: ['source/bootstrap/less/bootstrap.less'],
         dest: 'public/resource/css/bootstrap.css'
       },
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
         },
         src: ['source/bootstrap/less/bootstrap.less'],
         dest: 'public/resource/css/bootstrap.min.css'
-      },
+      },*/
       custom: {
         src: ['source/less/custom.less'],
         dest: 'public/resource/css/<%= pkg.name %>.css'
@@ -77,11 +77,11 @@ module.exports = function(grunt) {
     },
 
     copy: {
-      fonts: {
+     /* fonts: {
         expand: true,
         src: ["source/bootstrap/fonts/*"],
         dest: 'public/resource/fonts'
-      },
+      },*/
       images: {
         expand: true,
         src: ["source/img/*"],
@@ -99,6 +99,12 @@ module.exports = function(grunt) {
         src: ["source/js/*.js"],
         dest: 'public/resource/js',
         flatten:true,        
+      },
+      foundation:{
+        expand:true,
+        src: ["source/foundation/*.css"],
+        dest: 'public/resource/css',
+        flatten:true,        
       }
     },
     watch: {
@@ -108,7 +114,7 @@ module.exports = function(grunt) {
       },
       js:{
         files: 'source/**/*.js',
-        tasks: ['concat', 'uglify', 'copy:customjs'],
+        tasks: ['copy:customjs'],
       },
     },
   });
@@ -132,7 +138,7 @@ module.exports = function(grunt) {
   grunt.registerTask('dist-fonts', ['copy']);
 
   // Full distribution task.
-  grunt.registerTask('default', ['clean', 'dist-css', 'dist-fonts', 'dist-js']);
+  grunt.registerTask('default', ['clean', 'dist-css', 'dist-fonts']);
 
   grunt.event.on('watch', function(action, filepath, target) {
     grunt.log.writeln(target + ': ' + filepath + ' has ' + action);

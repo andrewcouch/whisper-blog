@@ -1,0 +1,22 @@
+<div class="newpost small-centered columns ">
+	<form method="post" id="post-form" ng-controller="NewPostCtrl" ng-submit="submit();">
+		<fieldset>
+			<legend>Post something</legend>
+			{% raw %}
+			<p class="error" ng-hide="message==''">{{message}}</p>
+			{% endraw %}
+			<input type="text" name="title" ng-model="post.title" placeholder="Title" maxlength="45"/>
+			<input type="text" name="body" ng-model="post.body" placeholder="Body"/>
+			<div class="row collapse">
+				<div class="small-3 large-2 columns">
+					<span class="prefix">http://</span>
+				</div>
+				<div class="small-9 large-10 columns">
+					<input type="text" name="url" ng-model="post.url" placeholder="Link to something" maxlength="100">
+				</div>
+			</div>			
+			<input type="text" name="tags" ng-model="post.tags" placeholder="And some tags"/>
+			<input type="submit" value="Post" class="button"/>
+		</fieldset>
+	</form>
+</div>

@@ -2,15 +2,23 @@ var chai = require("chai");
 var expect = chai.expect;
 var chaiAsPromised = require("chai-as-promised");
 chai.use(chaiAsPromised);
+var jwt = require('jsonwebtoken');
+var config = require('../app/model/config');
 
 var user = require('../app/model/user');
 var passwordutil = require('../app/model/password_util');
 
 describe('User',function(){
 	describe('Create Account',function(){
-		it('should return a token for the newly created user.',function(){
-			return expect(user.create_account({email:"test@test.com",password:"password"}))
-				.to.eventually.be.a("string");
+		it('should return a token for the newly created user.',function(done){
+			expect(expect(user.create_account({email:"test@test.com",password:"password"}))
+				.to.be.fulfilled.then(function(token){
+				jwt.verify(token, config.secret, {}, function(err, decoded) {
+				      expect(err).to.not.be.ok;
+				      expect(decoded).to.have.property("email","test@test.com");
+				      expect(decoded).to.have.property("id");
+				    });
+				})).notify(done);
 		});
 	});
 	describe('Load Account',function(){
@@ -25,9 +33,15 @@ describe('User',function(){
 		});
 	});	
 	describe('Login',function(){
-		it('should return a token for the newly logged in user.',function(){
-			return expect(user.login({email:"test@test.com",password:"password"}))
-				.to.eventually.be.a("string");
+		it('should return a token for the newly logged in user.',function(done){
+			expect(expect(user.login({email:"test@test.com",password:"password"}))
+				.to.be.fulfilled.then(function(token){
+				jwt.verify(token, config.secret, {}, function(err, decoded) {
+				      expect(err).to.not.be.ok;
+				      expect(decoded).to.have.property("email","test@test.com");
+				      expect(decoded).to.have.property("id");
+				    });
+				})).notify(done);
 		});
 	});
 	describe('Delete Account',function(){	
